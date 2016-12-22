@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" backgroundcolor="#55aaff" nextobjectid="44">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="3" columns="3">
+  <image source="../images/tiles.png" width="48" height="16"/>
+ </tileset>
+ <tileset firstgid="4" name="player" tilewidth="16" tileheight="16" tilecount="9" columns="9">
+  <image source="../images/player.png" width="144" height="16"/>
+ </tileset>
+ <tileset firstgid="13" name="coin" tilewidth="8" tileheight="8" tilecount="1" columns="1">
+  <image source="../images/coin.png" width="8" height="8"/>
+ </tileset>
+ <tileset firstgid="14" name="enemy-0" tilewidth="16" tileheight="16" tilecount="9" columns="9">
+  <image source="../images/enemy-0.png" width="144" height="16"/>
+ </tileset>
+ <layer name="walls" width="40" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,3,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,3,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,3,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,3,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,3,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,2,2,2,2,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="player">
+  <object id="2" gid="4" x="1157" y="345" width="16" height="16"/>
+  <object id="4" gid="4" x="1052" y="317" width="16" height="16"/>
+  <object id="6" gid="4" x="1052" y="325" width="16" height="16"/>
+  <object id="10" name="player" type="player" gid="2147483655" x="112" y="128.666" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="coin">
+  <object id="11" type="coin" gid="13" x="179.5" y="123.75" width="8" height="8"/>
+  <object id="12" type="coin" gid="13" x="196.25" y="123.5" width="8" height="8"/>
+  <object id="13" type="coin" gid="13" x="275" y="140.25" width="8" height="8"/>
+  <object id="14" type="coin" gid="13" x="291.5" y="140.25" width="8" height="8"/>
+  <object id="15" type="coin" gid="13" x="307.5" y="140.25" width="8" height="8"/>
+  <object id="16" type="coin" gid="13" x="323.75" y="140.25" width="8" height="8"/>
+  <object id="17" type="coin" gid="13" x="339.75" y="140.25" width="8" height="8"/>
+  <object id="18" type="coin" gid="13" x="387.5" y="76" width="8" height="8"/>
+  <object id="19" type="coin" gid="13" x="419.75" y="59" width="8" height="8"/>
+  <object id="20" type="coin" gid="13" x="340" y="189.25" width="8" height="8"/>
+  <object id="21" type="coin" gid="13" x="355.75" y="205" width="8" height="8"/>
+  <object id="22" type="coin" gid="13" x="339.75" y="220.25" width="8" height="8"/>
+  <object id="23" type="coin" gid="13" x="307.75" y="220.5" width="8" height="8"/>
+  <object id="24" type="coin" gid="13" x="355.25" y="251.25" width="8" height="8"/>
+  <object id="25" type="coin" gid="13" x="340" y="267.5" width="8" height="8"/>
+  <object id="26" type="coin" gid="13" x="275" y="218.25" width="8" height="8"/>
+  <object id="27" type="coin" gid="13" x="213.5" y="218.25" width="8" height="8"/>
+  <object id="28" type="coin" gid="13" x="212.25" y="252.25" width="8" height="8"/>
+  <object id="29" type="coin" gid="13" x="243.75" y="252.25" width="8" height="8"/>
+  <object id="30" type="coin" gid="13" x="275" y="252" width="8" height="8"/>
+  <object id="31" type="coin" gid="13" x="307.5" y="348" width="8" height="8"/>
+  <object id="32" type="coin" gid="13" x="323.25" y="332.25" width="8" height="8"/>
+  <object id="33" type="coin" gid="13" x="339.75" y="348.25" width="8" height="8"/>
+  <object id="34" type="coin" gid="13" x="355" y="332.5" width="8" height="8"/>
+  <object id="35" type="coin" gid="13" x="372" y="347.75" width="8" height="8"/>
+  <object id="36" type="coin" gid="13" x="387.25" y="332" width="8" height="8"/>
+  <object id="37" type="coin" gid="13" x="403.75" y="347.75" width="8" height="8"/>
+  <object id="38" type="coin" gid="13" x="419" y="331.75" width="8" height="8"/>
+ </objectgroup>
+ <objectgroup name="ennemy">
+  <properties>
+   <property name="etype" value="ennemy"/>
+  </properties>
+  <object id="39" name="ennemy" type="ennemy" gid="18" x="369.5" y="109" width="16" height="16">
+   <properties>
+    <property name="etype" value="0"/>
+   </properties>
+  </object>
+  <object id="40" name="ennemy" type="ennemy" gid="18" x="289.5" y="240" width="16" height="16">
+   <properties>
+    <property name="etype" value="0"/>
+   </properties>
+  </object>
+  <object id="41" name="ennemy" type="ennemy" gid="18" x="367" y="336" width="16" height="16">
+   <properties>
+    <property name="etype" value="0"/>
+   </properties>
+  </object>
+  <object id="42" name="ennemy" type="ennemy" gid="18" x="238" y="143.5" width="16" height="16">
+   <properties>
+    <property name="etype" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
