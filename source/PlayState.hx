@@ -26,8 +26,6 @@ class PlayState extends FlxState
 	{
 		var x:Int = Std.parseInt(entityData.get("x"));
 		var y:Int = Std.parseInt(entityData.get("y"));
-		// @FIXME can not set x and y for _player : «Invalid field access : set_x»
-		trace(entityName);
 		if (entityName == "player")
 		{
 			_player.x = x;
@@ -37,10 +35,9 @@ class PlayState extends FlxState
 		{
 			_grpCoins.add(new Coin(x + 4, y + 4));
 		}
-		else if (entityName == "ennemy")
+		else if (entityData.get("name") == "ennemy")
 		{
-			_grpEnnemies.add(new Ennemy(x + 4, y, 0));
-			//  Std.parseInt(entityData.get("etype"))));
+			_grpEnnemies.add(new Ennemy(x + 4, y, Std.parseInt(entityData.get("type"))));
 		}
 	}
 
@@ -74,7 +71,7 @@ class PlayState extends FlxState
 		add(_grpCoins);
 
 		var tmpEnemyMap:TiledObjectLayer = cast(_map.getLayer("ennemy"));
-		var _grpEnnemies = new FlxTypedGroup<Ennemy>();
+		_grpEnnemies = new FlxTypedGroup<Ennemy>();
 		for (e in tmpEnemyMap.objects)
 		{
 			placeEntities(e.type, e.xmlData.x);
@@ -99,7 +96,7 @@ class PlayState extends FlxState
 		FlxG.collide(_player, _mWalls);
 		FlxG.overlap(_player, _grpCoins, playerTouchCoin);
 		FlxG.collide(_grpEnnemies, _mWalls);
-		// _grpEnnemies.forEachAlive(checkEnnemyVision);
+		_grpEnnemies.forEachAlive(checkEnnemyVision);
 	}
 
 	private function playerTouchCoin(P:Player, C:Coin) : Void

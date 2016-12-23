@@ -86,22 +86,22 @@
   <properties>
    <property name="etype" value="ennemy"/>
   </properties>
-  <object id="39" name="ennemy" type="ennemy" gid="18" x="369.5" y="109" width="16" height="16">
+  <object id="39" name="ennemy" type="0" gid="18" x="369.5" y="109" width="16" height="16">
    <properties>
     <property name="etype" value="0"/>
    </properties>
   </object>
-  <object id="40" name="ennemy" type="ennemy" gid="18" x="289.5" y="240" width="16" height="16">
+  <object id="40" name="ennemy" type="0" gid="18" x="289.5" y="240" width="16" height="16">
    <properties>
     <property name="etype" value="0"/>
    </properties>
   </object>
-  <object id="41" name="ennemy" type="ennemy" gid="18" x="367" y="336" width="16" height="16">
+  <object id="41" name="ennemy" type="0" gid="18" x="367" y="336" width="16" height="16">
    <properties>
     <property name="etype" value="0"/>
    </properties>
   </object>
-  <object id="42" name="ennemy" type="ennemy" gid="18" x="238" y="143.5" width="16" height="16">
+  <object id="42" name="ennemy" type="0" gid="18" x="238" y="143.5" width="16" height="16">
    <properties>
     <property name="etype" value="0"/>
    </properties>

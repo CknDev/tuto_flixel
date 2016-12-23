@@ -15,12 +15,7 @@ class Coin extends FlxSprite
   override public function kill():Void
   {
     alive = false;
-    FlxTween.tween(
-      this,
-      { alpha: 0, y : y - 16 },
-      0.33,
-      { ease: FlxEase.circOut, onComplete: finishKill }
-    );
+    FlxTween.tween( this, { alpha: 0, y : y - 16 }, 0.33, { ease: FlxEase.circOut, onComplete: finishKill });
   }
 
   private function finishKill(_):Void
