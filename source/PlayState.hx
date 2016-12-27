@@ -14,6 +14,8 @@ import flixel.tile.FlxTilemap;
 import flixel.tile.FlxBaseTilemap;
 import flixel.group.FlxGroup;
 
+using flixel.util.FlxSpriteUtil;
+
 class PlayState extends FlxState
 {
 	private var _map:TiledMap;
@@ -24,6 +26,8 @@ class PlayState extends FlxState
 	private var _hud:HUD;
 	private var _money:Int = 0;
 	private var _health:Int = 3;
+	private var _inCombat:Bool = false;
+	private var _combatHud:CombatHUD;
 
 	private function placeEntities(entityName:String, entityData:Xml):Void
 	{
@@ -93,16 +97,42 @@ class PlayState extends FlxState
 		_hud = new HUD();
 		add(_hud);
 
+		_combatHud = new CombatHUD();
+		add(_combatHud);
+
 		super.create();
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-		FlxG.collide(_player, _mWalls);
-		FlxG.overlap(_player, _grpCoins, playerTouchCoin);
-		FlxG.collide(_grpEnnemies, _mWalls);
-		_grpEnnemies.forEachAlive(checkEnnemyVision);
+		if (!_inCombat)
+		{
+			FlxG.collide(_player, _mWalls);
+			FlxG.overlap(_player, _grpCoins, playerTouchCoin);
+			FlxG.collide(_grpEnnemies, _mWalls);
+			_grpEnnemies.forEachAlive(checkEnnemyVision);
+			FlxG.overlap(_player, _grpEnnemies, playerTouchEnnemy);
+		}
+		else
+		{
+			if (!_combatHud.visible)
+			{
+				_health = _combatHud.playerHealth;
+				_hud.updateHUD(_health, _money);
+				if (_combatHud.outcome == VICTORY)
+				{
+					_combatHud.e.kill();
+				}
+				else
+				{
+					_combatHud.e.flicker();
+				}
+				_inCombat = false;
+				_player.active = true;
+				_grpEnnemies.active = true;
+			}
+		}
 	}
 
 	private function playerTouchCoin(P:Player, C:Coin) : Void
@@ -113,6 +143,22 @@ class PlayState extends FlxState
 			_money++;
 			_hud.updateHUD(_health, _money);
 		}
+	}
+
+	private function playerTouchEnnemy(P:Player, E:Ennemy):Void
+	{
+		if (P.alive && P.exists && E.alive && E.exists && !E.isFlickering())
+		{
+			startCombat(E);
+		}
+	}
+
+	private function startCombat(E:Ennemy):Void
+	{
+		_inCombat = true;
+		_player.active = false;
+		_grpEnnemies.active = false;
+		_combatHud.initCombat(_health, E);
 	}
 
 	private function checkEnnemyVision(e:Ennemy):Void

@@ -5,6 +5,9 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
+import flixel.util.FlxSpriteUtil;
+
+using flixel.util.FlxSpriteUtil;
 
 class Ennemy extends FlxSprite
 {
@@ -114,9 +117,21 @@ class Ennemy extends FlxSprite
     }
   }
 
+  public function changeEnnemy(EType:Int):Void {
+    if (etype != EType)
+    {
+      etype = EType;
+      loadGraphic("assets/images/ennemy-" + etype + ".png", true, 16, 16);
+    }
+  }
+
   override public function update(elapsed:Float):Void
   {
     _brain.update();
     super.update(elapsed);
+    if (isFlickering())
+    {
+      return;
+    }
   }
 }
