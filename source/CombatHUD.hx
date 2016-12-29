@@ -407,7 +407,7 @@ class CombatHUD extends FlxTypedGroup<FlxSprite>
 	private function ennemyAttack():Void
 	{
 		// first, lets see if the ennemy hits or not. We'll give him a 30% chance to hit
-		if (FlxG.random.bool(30))
+		if (FlxG.random.bool(100))
 		{
 			// if we hit, flash the screen white, and deal one damage to the player - then update the player's health
 			FlxG.camera.flash(FlxColor.WHITE, .2);

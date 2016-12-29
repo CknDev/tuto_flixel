@@ -13,6 +13,7 @@ import flixel.addons.editors.tiled.TiledObjectLayer;
 import flixel.tile.FlxTilemap;
 import flixel.tile.FlxBaseTilemap;
 import flixel.group.FlxGroup;
+import flixel.util.FlxColor;
 
 using flixel.util.FlxSpriteUtil;
 
@@ -28,6 +29,8 @@ class PlayState extends FlxState
 	private var _health:Int = 3;
 	private var _inCombat:Bool = false;
 	private var _combatHud:CombatHUD;
+	private var _ending:Bool;
+	private var _won:Bool;
 
 	private function placeEntities(entityName:String, entityData:Xml):Void
 	{
@@ -106,6 +109,10 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+		if (_ending)
+		{
+			return;
+		}
 		if (!_inCombat)
 		{
 			FlxG.collide(_player, _mWalls);
@@ -120,17 +127,25 @@ class PlayState extends FlxState
 			{
 				_health = _combatHud.playerHealth;
 				_hud.updateHUD(_health, _money);
-				if (_combatHud.outcome == VICTORY)
+				if (_combatHud.outcome == DEFEAT)
 				{
-					_combatHud.e.kill();
+					_ending = true;
+					FlxG.camera.fade(FlxColor.BLACK, .33, false, doneFadeOut);
 				}
 				else
 				{
-					_combatHud.e.flicker();
+					if (_combatHud.outcome == VICTORY)
+					{
+						_combatHud.e.kill();
+					}
+					else
+					{
+						_combatHud.e.flicker();
+					}
+					_inCombat = false;
+					_player.active = true;
+					_grpEnnemies.active = true;
 				}
-				_inCombat = false;
-				_player.active = true;
-				_grpEnnemies.active = true;
 			}
 		}
 	}
@@ -172,6 +187,10 @@ class PlayState extends FlxState
 		{
 			e.seesPlayer = false;
 		}
+	}
 
+	private function doneFadeOut():Void
+	{
+		FlxG.switchState(new GameOverState(_won, _money));
 	}
 }
