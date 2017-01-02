@@ -30,6 +30,14 @@ class MenuState extends FlxState
 		_btnOptions.y = FlxG.height - _btnOptions.height - 10;
 		add(_btnOptions);
 
+		// @FIXME : cannot play music, either be mp3 or ogg
+		// if (FlxG.sound.music == null)
+		// {
+		// 	FlxG.sound.playMusic(AssetPaths.HaxeFlixel_Tutorial_Game__ogg, 1, true);
+		// }
+		
+		_btnPlay.onUp.sound = FlxG.sound.load(AssetPaths.select__wav);
+
 		super.create();
 	}
 
